@@ -28,5 +28,5 @@ class UserRegisterSerializer(serializers.ModelSerializer):
         return user 
     
     class Meta:
-        model = User
+        model = User 
         fields = ('username','password','confirm_password')
