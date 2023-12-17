@@ -1,10 +1,8 @@
-from django.urls import path
-from apps.users.views import UserListCrateAPIView,UserRetrieveAPIView,UserUpdateAPIView,UserDestroyAPIView
+from rest_framework.routers import DefaultRouter
 
-urlpatterns = [
-    path('',UserListCrateAPIView.as_view(),name='api_users'),
-    path('<int:pk>',UserRetrieveAPIView.as_view(),name='api_users_retrieve'),
-    path('update/<int:pk>/',UserUpdateAPIView.as_view(),name='api_users_update'),
-    path('destroy/<int:pk>/',UserDestroyAPIView.as_view(),name='api_users_destroy'),
+from apps.users.views import UserAPIView
 
-]
+router = DefaultRouter()
+router.register('',UserAPIView,'api_users')
+
+urlpatterns = router.urls

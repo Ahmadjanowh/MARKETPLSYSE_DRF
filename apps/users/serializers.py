@@ -4,7 +4,7 @@ from apps.users.models import User
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = '__all__'
+        fields = ('id','username','first_name','last_name','date_joined','profile_image')
     
 class UserRegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(
@@ -17,14 +17,15 @@ class UserRegisterSerializer(serializers.ModelSerializer):
     def validate(self,attrs):
         if attrs['password'] != attrs['confirm_password']:
             raise serializers.ValidationError({'password':'Пароли не совпадают'})
-            return attrs
+        return attrs
+
     
     def create(self,validated_data):
         user = User.objects.create(
             username=validated_data['username']
         )
         user.set_password(validated_data['password'])
-        user.save
+        user.save()
         return user 
     
     class Meta:
