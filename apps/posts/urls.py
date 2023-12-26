@@ -4,4 +4,4 @@ from apps.posts.views import PostAPiView
 router = DefaultRouter()
 router.register('',PostAPiView,'api_posts')
 
-urlpatterns = router.urls
+urlpatterns = router.urls       

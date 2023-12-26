@@ -1,11 +1,21 @@
 from rest_framework import serializers
+
 from apps.users.models import User
+from apps.posts.serializers import PostSerializer
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('id','username','first_name','last_name','date_joined','profile_image')
     
+class UserDetailSerializer(serializers.ModelSerializer):
+    users_posts = PostSerializer(read_only=True,many=True)
+
+    class Meta:
+        model = User
+        fields = ('id','username','first_name','last_name',
+                  'date_joined','profile_image','users_posts')
+
 class UserRegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(
         max_length = 255,write_only=True
