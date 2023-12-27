@@ -3,6 +3,7 @@ from rest_framework import mixins
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter
+from django.core.files.base import ContentFile
 
 from apps.posts.models import Post
 from apps.posts.serializers  import PostSerializer,PostCreateSerializer
@@ -35,3 +36,5 @@ class PostAPiView(GenericViewSet,
         if self.action in ('update','partial_update','destroy'):
             return (PostPermission(),)
         return (AllowAny(),)
+    
+    

@@ -2,6 +2,7 @@ from rest_framework.viewsets import GenericViewSet
 from rest_framework import mixins
 from rest_framework.permissions import AllowAny
 
+
 from apps.users.models import User
 from apps.users.serializers import  UserRegisterSerializer,UserSerializer,UserDetailSerializer
 from apps.users.permissions import UserPermission
@@ -28,3 +29,4 @@ class UserAPIView(GenericViewSet,
             return (UserPermission(),)
         return (AllowAny(),)   
     
+   
